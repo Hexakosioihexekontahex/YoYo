@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         setContentView(R.layout.activity_main);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         final ComponentName component = getComponent(this);
-        getPackageManager().setComponentEnabledSetting(component, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        // PackageManager.COMPONENT_ENABLED_STATE_DISABLED -> disable component
+        getPackageManager().setComponentEnabledSetting(component, PackageManager.COMPONENT_ENABLED_STATE_ENABLED/*-> enable component*/, PackageManager.DONT_KILL_APP);
 
         swEnabled = findViewById(R.id.lol);
+        swEnabled.setChecked(prefs.getBoolean("enabled", false));
         swEnabled.setOnCheckedChangeListener(this);
     }
 
